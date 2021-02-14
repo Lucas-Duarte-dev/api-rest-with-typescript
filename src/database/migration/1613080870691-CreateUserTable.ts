@@ -16,6 +16,18 @@ export class CreateUserTable1613080870691 implements MigrationInterface {
                   default: 'uuid_generate_v4()'
                 },
                 {
+                  name: 'name',
+                  type: 'varchar',
+                },
+                {
+                  name: 'bio',
+                  type: 'varchar',
+                },
+                {
+                  name: 'github',
+                  type: 'varchar',
+                },
+                {
                   name: 'email',
                   type: 'varchar',
                   isUnique: true,
@@ -26,6 +38,11 @@ export class CreateUserTable1613080870691 implements MigrationInterface {
                 },
                 {
                   name: 'created_at',
+                  type: 'timestamp',
+                  default: 'now()'
+                },
+                {
+                  name: 'updated_at',
                   type: 'timestamp',
                   default: 'now()'
                 }

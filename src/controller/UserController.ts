@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-
 import { User } from '../model/User';
 
 export const getUser = async (request: Request, response: Response) => {
@@ -10,17 +9,16 @@ export const getUser = async (request: Request, response: Response) => {
 }
 
 export const postUser = async (request: Request, response: Response) => {
-    const { email, password } = request.body;
+    const { name, bio, github ,email, password } = request.body;
     try {
       const repository = getRepository(User);
-    
     
       const userAlreadyExists = await repository.findOne({ where:{ email } })
     
       if(userAlreadyExists) { 
         return response.status(409).json({error: "This user already exists."})
       }
-      const user = repository.create({ email, password })
+      const user = repository.create({ name, bio, github, email, password })
     
       await repository.save(user);
     

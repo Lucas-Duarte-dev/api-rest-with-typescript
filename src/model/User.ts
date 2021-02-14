@@ -1,6 +1,6 @@
-import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, BeforeInsert, BeforeUpdate, OneToOne} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn ,BeforeInsert, BeforeUpdate} from "typeorm";
 import bcrypt from 'bcryptjs';
-import { Profile } from "./Profile";
+
 
 @Entity('users')
 export class User {
@@ -8,9 +8,15 @@ export class User {
     @PrimaryGeneratedColumn("uuid")
     id: number;
 
-    @OneToOne(type => Profile, user => User)
-    profile: Profile;
+    @Column()
+    name: string;
 
+    @Column()
+    bio?: string;
+
+    @Column()
+    github?: string;
+    
     @Column({
         unique: true,
     })
@@ -25,6 +31,9 @@ export class User {
     @CreateDateColumn()
     created_at: Date;
     
+    @UpdateDateColumn()
+    updated_at: Date;
+
     @BeforeInsert()
     @BeforeUpdate()
     hashPassword() {
