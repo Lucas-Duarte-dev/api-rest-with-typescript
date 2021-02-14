@@ -31,7 +31,7 @@ com as seguintes informações:
 4. Rode o comando `npm start`
 
 
-<h2 style="color: #75FDA3">Dependências usadas</h2>
+<h2 style="color: green">Dependências usadas</h2>
 <ul>
     <li>TypeScript</li>
     <li>Express</li>
@@ -41,4 +41,4 @@ com as seguintes informações:
     <li>Postgres</li>
 </ul>
 
-<h3 style="color: #75FDA3">Conforme vou estudando e melhorando o código irei postando as alterações</h3>
+<h3 style="color: green">Conforme vou estudando e melhorando o código irei postando as alterações</h3>
