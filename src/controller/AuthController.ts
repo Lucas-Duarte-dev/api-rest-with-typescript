@@ -1,4 +1,3 @@
-import { validate } from '../auth/auth';
 import { User } from '../model/User';
 import { getRepository } from 'typeorm';
 import {Request, Response} from 'express';
@@ -29,7 +28,7 @@ export const authUser = async (request: Request, response: Response) => {
 
     delete user.password;
 
-    const token = jwt.sign({ id: user.id}, validate, { expiresIn: 86400 });
+    const token = jwt.sign({ id: user.id}, process.env.VALIDATE, { expiresIn: 86400 });
 
     response.json({user, token});
 }

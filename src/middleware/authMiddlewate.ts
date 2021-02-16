@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { validate } from '../auth/auth'
+
 
 interface TokenPay {
     id: string;
@@ -19,7 +19,7 @@ export default function authMiddlewate(request: Request, response: Response, nex
 
 
     try {
-        const data = jwt.verify(token, validate);
+        const data = jwt.verify(token, process.env.VALIDATE);
 
         const { id } = data as TokenPay;
 

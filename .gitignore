@@ -6,3 +6,4 @@ tmp/
 temp/
 src/auth/
 ormconfig.json/
+.env/

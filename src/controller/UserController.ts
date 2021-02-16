@@ -1,30 +1,38 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+import { validate } from 'class-validator'
 import { User } from '../model/User';
 
 export const getUser = async (request: Request, response: Response) => {
     const user = await getRepository(User).find();
 
-    return response.json(user)
+    return response.json(user);
 }
 
 export const postUser = async (request: Request, response: Response) => {
-    const { name, bio, github ,email, password } = request.body;
+    const { name, bio, github ,email, password  } = request.body;
     try {
-      const repository = getRepository(User);
-    
-      const userAlreadyExists = await repository.findOne({ where:{ email } })
-    
-      if(userAlreadyExists) { 
-        return response.status(409).json({error: "This user already exists."})
-      }
-      const user = repository.create({ name, bio, github, email, password })
-    
-      await repository.save(user);
-    
-      return response.json(user);
+        const repository = getRepository(User);
+
+        const userAlreadyExists = await repository.findOne({ where: { email } });
+
+        if(userAlreadyExists) { 
+          return response.status(409).json({error: "This user already exists."});
+        }
+
+        const user = repository.create({ name, bio, github, email, password });
+      
+        const validateUser = await validate(user)
+
+        if(validateUser.length > 0) {
+          return response.json({ message: 'Verify all fields.'})
+        }
+
+        await repository.save(user);
+      
+        return response.json(user);
     } catch (error) {
-        response.status(401).json({ error: "Cannot create user." })
+        response.status(401).json({ error: "Cannot create user." });
     }
 }
 
@@ -37,7 +45,7 @@ export const putEmail = async (request: Request, response: Response) => {
       const UserEmail = await repository.update(user_id, { email });
 
       if(UserEmail.affected !== 1) {
-        return response.status(404).json({message: 'User not found'})
+        return response.status(404).json({message: 'User not found'});
       }
     
       const UpdateUserEmail = await repository.findOne(user_id);

@@ -1,14 +1,19 @@
-import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn ,BeforeInsert, BeforeUpdate} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn ,BeforeInsert, BeforeUpdate, OneToMany } from "typeorm";
+import { IsEmail, MinLength } from 'class-validator'
 import bcrypt from 'bcryptjs';
+import { Post } from "./Posts";
 
 
 @Entity('users')
 export class User {
 
     @PrimaryGeneratedColumn("uuid")
-    id: number;
+    id: string;
 
-    @Column()
+    @Column({
+        nullable: false,
+    })
+    @MinLength(2, { message: "The name must be at least 2 characters"})
     name: string;
 
     @Column()
@@ -19,15 +24,21 @@ export class User {
     
     @Column({
         unique: true,
+        nullable: false,
     })
+    @IsEmail()
     email: string;
 
     @Column({
         select: true,
+        nullable: false,
     })
+    @MinLength(5, { message: "The name must be at least 2 characters"})
     password: string;
 
-    
+    @OneToMany(type => Post, user => User)
+    posts: Post[]
+
     @CreateDateColumn()
     created_at: Date;
     
@@ -37,6 +48,6 @@ export class User {
     @BeforeInsert()
     @BeforeUpdate()
     hashPassword() {
-        this.password = bcrypt.hashSync(this.password, 8);
+        this.password = bcrypt.hashSync(process.env.VALIDATE, 8);
     }
 }
