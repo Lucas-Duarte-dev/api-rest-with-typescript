@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn ,BeforeInsert, BeforeUpdate, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn ,BeforeInsert, BeforeUpdate, OneToMany, JoinColumn } from "typeorm";
 import { IsEmail, MinLength } from 'class-validator'
 import bcrypt from 'bcryptjs';
 import { Post } from "./Posts";
@@ -36,7 +36,8 @@ export class User {
     @MinLength(5, { message: "The name must be at least 2 characters"})
     password: string;
 
-    @OneToMany(type => Post, user => User)
+    @OneToMany(() => Post, post => post.user, { cascade: ["insert", "update"] })
+    @JoinColumn({ name: 'user_id' })
     posts: Post[]
 
     @CreateDateColumn()
@@ -48,6 +49,6 @@ export class User {
     @BeforeInsert()
     @BeforeUpdate()
     hashPassword() {
-        this.password = bcrypt.hashSync(process.env.VALIDATE, 8);
+        this.password = bcrypt.hashSync(this.password, 8);
     }
 }

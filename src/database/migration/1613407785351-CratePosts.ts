@@ -35,6 +35,16 @@ export class CratePosts1613407785351 implements MigrationInterface {
                     type: 'timestamp',
                     default: 'now()'
                 }
+            ],
+            foreignKeys: [
+                {
+                    name: 'blogPosts',
+                    columnNames: ['user_id'],
+                    referencedTableName: 'users',
+                    referencedColumnNames: ['id'],
+                    onUpdate: 'CASCADE', 
+                    onDelete: 'CASCADE',
+                }
             ]
         }))
     }

@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { User } from "./User";
 
 
@@ -14,7 +14,8 @@ export class Post {
     @Column()
     description: string;
 
-    @ManyToOne(type => User, posts => Post, { eager: true, cascade: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+    @ManyToOne(() => User, user => user.posts, { eager: true })
+    @JoinColumn({ name: 'user_id' })
     user: User;
 
     @CreateDateColumn()
