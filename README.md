@@ -1,6 +1,6 @@
 # Criando uma Api Rest com TypeScript e TypeORM
 
-##Passos para rodar esse projeto:
+## Passos para rodar esse projeto:
 
 1. Rode o comando `npm i` ou `yarn install` 
 2. Crie um arquivo `ormconfig.json` na raiz do seu projeto
@@ -41,4 +41,15 @@ com as seguintes informações:
     <li>Postgres</li>
 </ul>
 
-<h3 style="color: green">Conforme vou estudando e melhorando o código irei postando as alterações</h3>
+## O que tem nesse projeto
+
+Neste projeto eu criei uma api rest para um blog simples usando typescript, express e typeorm
+
+<h3>Nesta aplicação contem</h3>
+
+<ul>
+   <li>Criação de usuário e alteração de email e podendo deletar o mesmo</li>
+   <li>Muddleware de autenticação e geração de um token de autenticação</li>
+   <li>Cada usuário poderá criar post contendo titulo e descrição</li>
+   <li>Poderá criar, listar, atualizar e deletar os posts</li>
+</ul>
