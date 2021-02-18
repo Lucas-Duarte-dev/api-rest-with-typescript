@@ -2,7 +2,7 @@
 
 ##Passos para rodar esse projeto:
 
-1. Rode o comando `npm i` ou `yarn install` 
+1. Rode o comando `npm install` ou `yarn install` 
 2. Crie um arquivo `ormconfig.json` na raiz do seu projeto
 com as seguintes informações:
 ```
