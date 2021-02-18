@@ -1,6 +1,6 @@
 # Criando uma Api Rest com TypeScript e TypeORM
 
-##Passos para rodar esse projeto:
+## Passos para rodar esse projeto:
 
 1. Rode o comando `npm install` ou `yarn install` 
 2. Crie um arquivo `ormconfig.json` na raiz do seu projeto
