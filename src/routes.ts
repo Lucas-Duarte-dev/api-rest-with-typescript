@@ -3,7 +3,7 @@ import { Router } from 'express';
 import authMiddleware from './middleware/authMiddlewate'
 
 import { getUser, getOneUser ,postUser, putEmail, deleteUser } from './controller/UserController'
-import { postPosts, getPost } from './controller/PostControllers'
+import { postPosts, getPost, deletePost, putPost } from './controller/PostControllers'
 import { authUser, index } from './controller/AuthController'
 
 const routes = Router();
@@ -18,6 +18,8 @@ routes.delete('/user/:user_id', deleteUser);
 // posts
 routes.post('/user/:id/posts', postPosts);
 routes.get('/posts', getPost);
+routes.put('/user/:user_id/posts/:post_id', putPost);
+routes.delete('/user/:user_id/posts/:post_id', deletePost);
 
 // authenticate user
 routes.get('/auth/login', authUser);
