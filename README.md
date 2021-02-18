@@ -2,7 +2,7 @@
 
 ## Passos para rodar esse projeto:
 
-1. Rode o comando `npm install` ou `yarn install` 
+1. Rode o comando `npm i` ou `yarn install` 
 2. Crie um arquivo `ormconfig.json` na raiz do seu projeto
 com as seguintes informações:
 ```
@@ -31,7 +31,7 @@ com as seguintes informações:
 4. Rode o comando `npm start`
 
 
-<h2 style="color: #75FDA3">Dependências usadas</h2>
+<h2 style="color: green">Dependências usadas</h2>
 <ul>
     <li>TypeScript</li>
     <li>Express</li>
@@ -41,4 +41,15 @@ com as seguintes informações:
     <li>Postgres</li>
 </ul>
 
-<h3 style="color: #75FDA3">Conforme vou estudando e melhorando o código irei postando as alterações</h3>
+## O que tem nesse projeto
+
+Neste projeto eu criei uma api rest para um blog simples usando typescript, express e typeorm
+
+<h3>Nesta aplicação contem</h3>
+
+<ul>
+   <li>Criação de usuário e alteração de email e podendo deletar o mesmo</li>
+   <li>Muddleware de autenticação e geração de um token de autenticação</li>
+   <li>Cada usuário poderá criar post contendo titulo e descrição</li>
+   <li>Poderá criar, listar, atualizar e deletar os posts</li>
+</ul>
