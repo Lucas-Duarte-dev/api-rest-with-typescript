@@ -1,9 +1,9 @@
+node_modules/
+ormconfig.json/
+.env/
 .idea/
 .vscode/
-node_modules/
 build/
 tmp/
 temp/
 src/auth/
-ormconfig.json/
-.env/
